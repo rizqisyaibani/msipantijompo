@@ -24,3 +24,14 @@ Auth::routes();
 Route::get('/home', [
     HomeController::class, 'index'
 ])->name('home');
+
+
+Route::resource('individus', App\Http\Controllers\IndividuController::class);
+
+Route::resource('dokumens', App\Http\Controllers\DokumenController::class);
+
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+Route::resource('keluargas', App\Http\Controllers\KeluargaController::class);
